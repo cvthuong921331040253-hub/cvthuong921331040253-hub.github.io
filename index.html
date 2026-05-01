@@ -3,36 +3,99 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Hub Dashboard</title>
+<title>Dashboard App</title>
 
 <style>
 body {
+  margin:0;
   font-family: Arial;
-  background:#f5f7fb;
-  padding:15px;
 }
 
-.card {
-  display:block;
-  padding:14px;
-  margin-bottom:10px;
-  background:#fff;
-  border-radius:10px;
-  text-decoration:none;
-  color:#333;
-  box-shadow:0 2px 5px rgba(0,0,0,0.1);
+/* Layout */
+.container {
+  display:flex;
+  height:100vh;
+}
+
+/* Sidebar */
+.sidebar {
+  width:220px;
+  background:#2c3e50;
+  color:#fff;
+  padding:10px;
+}
+
+.menu-item {
+  padding:12px;
+  margin:5px 0;
+  cursor:pointer;
+  border-radius:6px;
+}
+
+.menu-item:hover {
+  background:#34495e;
+}
+
+/* Content */
+.content {
+  flex:1;
+}
+
+iframe {
+  width:100%;
+  height:100%;
+  border:none;
 }
 </style>
 </head>
 
 <body>
 
-<h2>📊 TRUNG TÂM</h2>
+<div class="container">
 
-<a class="card" href="https://cvthuong921331040253-hub.github.io/dashboard-icms/">📈 KPI tổng</a>
-<a class="card" href="https://cvthuong921331040253-hub.github.io/dashboard-icms/thuhoi.html">📥 Thu hồi</a>
-<a class="card" href="https://cvthuong921331040253-hub.github.io/dashboard-icms/homewifi.html">📶 Home Wifi</a>
-<a class="card" href="https://cvthuong921331040253-hub.github.io/dashboard-icms/tietkiemvt.html">💰 Tiết kiệm VT</a>
+  <!-- MENU -->
+  <div class="sidebar">
+    <h3>📊 Dashboard</h3>
+
+    <div class="menu-item" onclick="loadPage('kpi')">📈 KPI</div>
+    <div class="menu-item" onclick="loadPage('thuhoi')">📥 Thu hồi</div>
+    <div class="menu-item" onclick="loadPage('wifi')">📶 Home Wifi</div>
+    <div class="menu-item" onclick="loadPage('nhaplieu')">📝 Nhập liệu</div>
+    <div class="menu-item" onclick="loadPage('tietkiem')">💰 Tiết kiệm</div>
+  </div>
+
+  <!-- NỘI DUNG -->
+  <div class="content">
+    <iframe id="frame"
+      src="https://cvthuong921331040253-hub.github.io/dashboard-icms/">
+    </iframe>
+  </div>
+
+</div>
+
+<script>
+function loadPage(page) {
+  let url = "";
+
+  if (page === "kpi") {
+    url = "https://cvthuong921331040253-hub.github.io/dashboard-icms/";
+  }
+  if (page === "thuhoi") {
+    url = "https://cvthuong921331040253-hub.github.io/dashboard-icms/thuhoi.html";
+  }
+  if (page === "wifi") {
+    url = "https://cvthuong921331040253-hub.github.io/dashboard-icms/homewifi.html";
+  }
+  if (page === "nhaplieu") {
+    url = "https://cvthuong921331040253-hub.github.io/dashboard-icms/homewifinhaplieu.html";
+  }
+  if (page === "tietkiem") {
+    url = "https://cvthuong921331040253-hub.github.io/dashboard-icms/tietkiemvt.html";
+  }
+
+  document.getElementById("frame").src = url;
+}
+</script>
 
 </body>
 </html>
