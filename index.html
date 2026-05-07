@@ -2,99 +2,243 @@
 <html lang="vi">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <title>Dashboard App</title>
 
 <style>
-body {
-  margin:0;
-  font-family: Arial;
+*{
+  box-sizing:border-box;
 }
 
-/* Layout */
-.container {
+body{
+  margin:0;
+  font-family:Arial, sans-serif;
+  overflow:hidden;
+  background:#f4f6f9;
+}
+
+/* ===== Layout ===== */
+.container{
   display:flex;
   height:100vh;
 }
 
-/* Sidebar */
-.sidebar {
-  width:220px;
+/* ===== Sidebar ===== */
+.sidebar{
+  width:240px;
   background:#2c3e50;
   color:#fff;
-  padding:10px;
-}
-
-.menu-item {
   padding:12px;
-  margin:5px 0;
-  cursor:pointer;
-  border-radius:6px;
+  overflow-y:auto;
+  transition:0.3s;
+  z-index:1000;
 }
 
-.menu-item:hover {
+.sidebar h3{
+  margin-top:0;
+  margin-bottom:15px;
+  font-size:20px;
+  text-align:center;
+}
+
+/* ===== Menu ===== */
+.menu-item{
+  padding:14px 12px;
+  margin:6px 0;
+  cursor:pointer;
+  border-radius:10px;
+  transition:0.2s;
+  font-size:15px;
+  user-select:none;
+}
+
+.menu-item:hover{
   background:#34495e;
 }
 
-/* Content */
-.content {
-  flex:1;
+.menu-item:active{
+  transform:scale(0.98);
 }
 
-iframe {
+/* ===== Content ===== */
+.content{
+  flex:1;
+  background:#fff;
+  position:relative;
+}
+
+iframe{
   width:100%;
   height:100%;
   border:none;
+  background:#fff;
+}
+
+/* ===== Mobile Button ===== */
+.menu-toggle{
+  display:none;
+  position:fixed;
+  top:10px;
+  left:10px;
+  z-index:2000;
+  background:#2c3e50;
+  color:#fff;
+  border:none;
+  border-radius:8px;
+  padding:10px 12px;
+  font-size:20px;
+  cursor:pointer;
+}
+
+/* ===== Overlay ===== */
+.overlay{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.4);
+  z-index:999;
+}
+
+/* ===== Mobile ===== */
+@media (max-width:768px){
+
+  .menu-toggle{
+    display:block;
+  }
+
+  .sidebar{
+    position:fixed;
+    left:-260px;
+    top:0;
+    height:100%;
+    width:240px;
+    box-shadow:2px 0 10px rgba(0,0,0,0.3);
+  }
+
+  .sidebar.active{
+    left:0;
+  }
+
+  .overlay.active{
+    display:block;
+  }
+
+  .content{
+    width:100%;
+  }
+
+  iframe{
+    height:100vh;
+  }
+
+  .menu-item{
+    font-size:16px;
+    padding:15px;
+  }
 }
 </style>
 </head>
 
 <body>
 
+<!-- Nút mở menu mobile -->
+<button class="menu-toggle" onclick="toggleMenu()">☰</button>
+
+<!-- Overlay -->
+<div class="overlay" id="overlay" onclick="toggleMenu()"></div>
+
 <div class="container">
 
   <!-- MENU -->
-  <div class="sidebar">
+  <div class="sidebar" id="sidebar">
+
     <h3>📊 Dashboard</h3>
 
-    <div class="menu-item" onclick="loadPage('kpi')">📈 KPI</div>
-    <div class="menu-item" onclick="loadPage('thuhoi')">📥 Thu hồi</div>
-    <div class="menu-item" onclick="loadPage('wifi')">📶 Home Wifi</div>
-    <div class="menu-item" onclick="loadPage('tietkiem')">💰 Tiết kiệm</div>
-    <div class="menu-item" onclick="loadPage('icms')">💰 Tồn ICMS KSNN</div>
+    <div class="menu-item" onclick="loadPage('kpi')">
+      📈 KPI
+    </div>
+
+    <div class="menu-item" onclick="loadPage('thuhoi')">
+      📥 Thu hồi
+    </div>
+
+    <div class="menu-item" onclick="loadPage('wifi')">
+      📶 Home Wifi
+    </div>
+
+    <div class="menu-item" onclick="loadPage('tietkiem')">
+      💰 Tiết kiệm
+    </div>
+
+    <div class="menu-item" onclick="loadPage('icms')">
+      📦 Tồn ICMS KSNN
+    </div>
+
   </div>
 
   <!-- NỘI DUNG -->
   <div class="content">
-    <iframe id="frame"
+
+    <iframe
+      id="frame"
       src="https://cvthuong921331040253-hub.github.io/dashboard-icms/">
     </iframe>
+
   </div>
 
 </div>
 
 <script>
-function loadPage(page) {
+
+function loadPage(page){
+
   let url = "";
 
-  if (page === "kpi") {
+  if(page === "kpi"){
     url = "https://cvthuong921331040253-hub.github.io/dashboard-icms/";
   }
-  if (page === "thuhoi") {
+
+  if(page === "thuhoi"){
     url = "https://cvthuong921331040253-hub.github.io/dashboard-icms/thuhoi.html";
   }
-  if (page === "wifi") {
+
+  if(page === "wifi"){
     url = "https://cvthuong921331040253-hub.github.io/dashboard-icms/homewifi.html";
   }
-  if (page === "tietkiem") {
+
+  if(page === "tietkiem"){
     url = "https://cvthuong921331040253-hub.github.io/dashboard-icms/tietkiemvt.html";
   }
-  if (page === "icms") {
+
+  if(page === "icms"){
     url = "https://cvthuong921331040253-hub.github.io/dashboard-icms/icms.html";
   }
 
   document.getElementById("frame").src = url;
+
+  // Mobile tự đóng menu sau khi chọn
+  if(window.innerWidth <= 768){
+    toggleMenu(false);
+  }
 }
+
+/* ===== Toggle menu ===== */
+
+function toggleMenu(forceClose = null){
+
+  const sidebar = document.getElementById("sidebar");
+  const overlay = document.getElementById("overlay");
+
+  if(forceClose === false){
+    sidebar.classList.remove("active");
+    overlay.classList.remove("active");
+    return;
+  }
+
+  sidebar.classList.toggle("active");
+  overlay.classList.toggle("active");
+}
+
 </script>
 
 </body>
