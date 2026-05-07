@@ -61,6 +61,7 @@ iframe {
     <div class="menu-item" onclick="loadPage('thuhoi')">📥 Thu hồi</div>
     <div class="menu-item" onclick="loadPage('wifi')">📶 Home Wifi</div>
     <div class="menu-item" onclick="loadPage('tietkiem')">💰 Tiết kiệm</div>
+    <div class="menu-item" onclick="loadPage('icms')">💰 Tiết kiệm</div>
   </div>
 
   <!-- NỘI DUNG -->
@@ -87,6 +88,9 @@ function loadPage(page) {
   }
   if (page === "tietkiem") {
     url = "https://cvthuong921331040253-hub.github.io/dashboard-icms/tietkiemvt.html";
+  }
+  if (page === "icms") {
+    url = "https://cvthuong921331040253-hub.github.io/dashboard-icms/icms.html";
   }
 
   document.getElementById("frame").src = url;
