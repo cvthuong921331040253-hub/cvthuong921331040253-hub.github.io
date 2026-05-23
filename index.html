@@ -177,6 +177,10 @@ iframe{
     <div class="menu-item" onclick="loadPage('icms')">
       📦 Tồn ICMS KSNN
     </div>
+
+      <div class="menu-item" onclick="loadPage('toncdbr')">
+      📈 TỒN CĐBR
+    </div>
     
 
   </div>
@@ -221,6 +225,10 @@ function loadPage(page){
 
   if(page === "icms"){
     url = "https://cvthuong921331040253-hub.github.io/dashboard-icms/icms.html";
+  }
+
+  if(page === "icms"){
+    url = "https://cvthuong921331040253-hub.github.io/dashboard-icms/toncdbr.html";
   }
 
   document.getElementById("frame").src = url;
