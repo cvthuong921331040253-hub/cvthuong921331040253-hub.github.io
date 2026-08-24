@@ -12,9 +12,9 @@
 
 <style>
 
-/* ========================================
+/* =====================================================
    RESET
-======================================== */
+===================================================== */
 
 *{
   box-sizing:border-box;
@@ -25,7 +25,9 @@ body{
   width:100%;
   height:100%;
   margin:0;
+  padding:0;
   overflow:hidden;
+
   font-family:
     "Segoe UI",
     Arial,
@@ -33,24 +35,18 @@ body{
 }
 
 
-/* ========================================
+/* =====================================================
    BACKGROUND
-======================================== */
+===================================================== */
 
 body{
-  background:
-    radial-gradient(
-      circle at top left,
-      #263f5a,
-      #0b1320 45%,
-      #060b12 100%
-    );
+  background:#f4f6f9;
 }
 
 
-/* ========================================
-   MAIN CONTAINER
-======================================== */
+/* =====================================================
+   MAIN CONTENT
+===================================================== */
 
 .container{
   width:100vw;
@@ -58,102 +54,36 @@ body{
   position:relative;
 }
 
-
-/* ========================================
-   CONTENT
-======================================== */
-
 .content{
   position:absolute;
   inset:0;
+
   width:100%;
   height:100%;
+
   background:#ffffff;
 }
 
 
-/* ========================================
+/* =====================================================
    IFRAME
-======================================== */
+===================================================== */
 
 #frame{
   display:block;
+
   width:100%;
   height:100%;
+
   border:none;
+
   background:#ffffff;
 }
 
 
-/* ========================================
-   MENU BUTTON
-======================================== */
-
-.menu-toggle{
-  position:fixed;
-
-  top:16px;
-  left:16px;
-
-  width:48px;
-  height:48px;
-
-  z-index:3000;
-
-  border:1px solid rgba(255,255,255,0.15);
-
-  border-radius:14px;
-
-  background:
-    rgba(20,31,46,0.88);
-
-  backdrop-filter:
-    blur(14px);
-
-  -webkit-backdrop-filter:
-    blur(14px);
-
-  color:#ffffff;
-
-  font-size:23px;
-
-  cursor:pointer;
-
-  box-shadow:
-    0 8px 25px
-    rgba(0,0,0,0.25);
-
-  transition:
-    transform 0.2s ease,
-    background 0.2s ease,
-    box-shadow 0.2s ease;
-
-  display:flex;
-  align-items:center;
-  justify-content:center;
-}
-
-.menu-toggle:hover{
-  background:
-    rgba(35,57,82,0.96);
-
-  transform:
-    scale(1.06);
-
-  box-shadow:
-    0 12px 30px
-    rgba(0,0,0,0.35);
-}
-
-.menu-toggle:active{
-  transform:
-    scale(0.94);
-}
-
-
-/* ========================================
+/* =====================================================
    OVERLAY
-======================================== */
+===================================================== */
 
 .overlay{
   position:fixed;
@@ -184,12 +114,11 @@ body{
 }
 
 
-/* ========================================
+/* =====================================================
    SIDEBAR
-======================================== */
+===================================================== */
 
 .sidebar{
-
   position:fixed;
 
   top:0;
@@ -199,8 +128,6 @@ body{
   height:100vh;
 
   z-index:2000;
-
-  padding:18px 14px;
 
   overflow-y:auto;
 
@@ -219,8 +146,8 @@ body{
   background:
     linear-gradient(
       180deg,
-      rgba(21,34,50,0.98),
-      rgba(8,16,27,0.99)
+      #1d2c3d 0%,
+      #111c28 100%
     );
 
   border-right:
@@ -230,12 +157,6 @@ body{
   box-shadow:
     15px 0 50px
     rgba(0,0,0,0.35);
-
-  backdrop-filter:
-    blur(20px);
-
-  -webkit-backdrop-filter:
-    blur(20px);
 }
 
 .sidebar.active{
@@ -244,112 +165,218 @@ body{
 }
 
 
-/* ========================================
+/* =====================================================
    SCROLLBAR
-======================================== */
+===================================================== */
 
 .sidebar::-webkit-scrollbar{
   width:5px;
 }
 
+.sidebar::-webkit-scrollbar-track{
+  background:transparent;
+}
+
 .sidebar::-webkit-scrollbar-thumb{
   background:
-    rgba(255,255,255,0.18);
+    rgba(255,255,255,0.16);
 
   border-radius:10px;
 }
 
 
-/* ========================================
-   LOGO
-======================================== */
+/* =====================================================
+   HEADER
+===================================================== */
 
 .sidebar-header{
+  position:relative;
+
+  height:127px;
 
   display:flex;
   align-items:center;
 
-  gap:12px;
-
   padding:
-    8px 8px 20px;
-
-  margin-bottom:8px;
+    0 18px 0 96px;
 
   border-bottom:
     1px solid
     rgba(255,255,255,0.08);
-}
-
-.logo-icon{
-
-  width:44px;
-  height:44px;
-
-  display:flex;
-  align-items:center;
-  justify-content:center;
-
-  border-radius:14px;
-
-  font-size:22px;
 
   background:
     linear-gradient(
-      135deg,
-      #1677ff,
-      #00b8d9
+      180deg,
+      rgba(255,255,255,0.02),
+      rgba(255,255,255,0)
     );
-
-  box-shadow:
-    0 6px 20px
-    rgba(22,119,255,0.35);
 }
+
+
+/* =====================================================
+   LOGO TEXT
+===================================================== */
 
 .logo-text{
   display:flex;
   flex-direction:column;
+
+  justify-content:center;
 }
 
 .logo-title{
-
   color:#ffffff;
 
-  font-size:18px;
+  font-size:22px;
 
   font-weight:700;
+
+  line-height:1.2;
 
   letter-spacing:
     0.3px;
 }
 
 .logo-subtitle{
-
-  margin-top:2px;
+  margin-top:5px;
 
   color:
-    rgba(255,255,255,0.48);
+    rgba(255,255,255,0.55);
 
   font-size:11px;
 
+  font-weight:500;
+
   letter-spacing:
-    1px;
+    1.6px;
 }
 
 
-/* ========================================
-   MENU LABEL
-======================================== */
+/* =====================================================
+   MENU TOGGLE
+===================================================== */
+
+.menu-toggle{
+  position:fixed;
+
+  top:35px;
+  left:20px;
+
+  width:58px;
+  height:58px;
+
+  z-index:3001;
+
+  display:flex;
+
+  flex-direction:column;
+
+  align-items:center;
+  justify-content:center;
+
+  gap:6px;
+
+  padding:0;
+
+  border:
+    1px solid
+    rgba(116,172,219,0.28);
+
+  border-radius:18px;
+
+  background:
+    linear-gradient(
+      145deg,
+      #233548,
+      #1b2b3b
+    );
+
+  box-shadow:
+    0 10px 22px
+    rgba(0,0,0,0.28),
+
+    inset 0 1px 0
+    rgba(255,255,255,0.05),
+
+    0 0 18px
+    rgba(0,174,239,0.14);
+
+  cursor:pointer;
+
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.menu-toggle:hover{
+  transform:scale(1.04);
+
+  border-color:
+    rgba(79,185,255,0.65);
+
+  background:
+    linear-gradient(
+      145deg,
+      #2a4258,
+      #203548
+    );
+}
+
+
+/* =====================================================
+   MENU ICON LINES
+===================================================== */
+
+.menu-toggle span{
+  display:block;
+
+  width:23px;
+  height:3px;
+
+  border-radius:10px;
+
+  background:#e7edf3;
+
+  transition:
+    transform 0.25s ease,
+    opacity 0.2s ease;
+}
+
+
+/* =====================================================
+   TOGGLE -> X
+===================================================== */
+
+.menu-toggle.active span:nth-child(1){
+  transform:
+    translateY(9px)
+    rotate(45deg);
+}
+
+.menu-toggle.active span:nth-child(2){
+  opacity:0;
+}
+
+.menu-toggle.active span:nth-child(3){
+  transform:
+    translateY(-9px)
+    rotate(-45deg);
+}
+
+
+/* =====================================================
+   MENU SECTION LABEL
+===================================================== */
 
 .menu-label{
-
   margin:
-    18px 10px 8px;
+    20px 18px 10px;
 
   color:
     rgba(255,255,255,0.38);
 
-  font-size:10px;
+  font-size:11px;
 
   font-weight:700;
 
@@ -358,24 +385,23 @@ body{
 }
 
 
-/* ========================================
+/* =====================================================
    MENU ITEM
-======================================== */
+===================================================== */
 
 .menu-item{
-
   display:flex;
   align-items:center;
 
   gap:13px;
 
-  width:100%;
-
-  padding:
-    13px 14px;
+  min-height:52px;
 
   margin:
-    5px 0;
+    5px 12px;
+
+  padding:
+    11px 14px;
 
   border-radius:12px;
 
@@ -397,7 +423,6 @@ body{
 }
 
 .menu-item:hover{
-
   background:
     rgba(255,255,255,0.08);
 
@@ -408,14 +433,13 @@ body{
 }
 
 .menu-item.active{
-
   color:#ffffff;
 
   background:
     linear-gradient(
       90deg,
       rgba(22,119,255,0.85),
-      rgba(22,119,255,0.25)
+      rgba(22,119,255,0.22)
     );
 
   box-shadow:
@@ -425,12 +449,11 @@ body{
 }
 
 
-/* ========================================
+/* =====================================================
    MENU ICON
-======================================== */
+===================================================== */
 
 .menu-icon{
-
   width:30px;
   height:30px;
 
@@ -449,45 +472,47 @@ body{
 }
 
 
-/* ========================================
+/* =====================================================
    MENU TEXT
-======================================== */
+===================================================== */
 
 .menu-text{
   flex:1;
 }
 
 
-/* ========================================
-   STATUS
-======================================== */
+/* =====================================================
+   SIDEBAR FOOTER
+===================================================== */
 
 .sidebar-footer{
-
-  margin-top:22px;
+  margin:
+    24px 12px 18px;
 
   padding:
-    14px 12px;
+    13px 10px;
+
+  border:
+    1px solid
+    rgba(255,255,255,0.07);
 
   border-radius:12px;
 
   background:
     rgba(255,255,255,0.04);
 
-  border:
-    1px solid
-    rgba(255,255,255,0.06);
-
   color:
     rgba(255,255,255,0.45);
 
-  font-size:11px;
+  font-size:10px;
 
   text-align:center;
+
+  letter-spacing:
+    0.4px;
 }
 
 .status-dot{
-
   display:inline-block;
 
   width:7px;
@@ -505,39 +530,59 @@ body{
 }
 
 
-/* ========================================
+/* =====================================================
    MOBILE
-======================================== */
+===================================================== */
 
 @media(max-width:768px){
 
   .sidebar{
-    width:min(280px, 82vw);
+    width:min(280px, 86vw);
+  }
+
+  .sidebar-header{
+    height:110px;
+
+    padding-left:88px;
   }
 
   .menu-toggle{
-    top:10px;
-    left:10px;
+    top:26px;
+    left:18px;
 
-    width:44px;
-    height:44px;
+    width:54px;
+    height:54px;
 
-    border-radius:12px;
+    border-radius:16px;
+  }
 
-    font-size:21px;
+  .logo-title{
+    font-size:20px;
+  }
+
+  .menu-item{
+    min-height:50px;
   }
 
 }
 
 
-/* ========================================
-   SMALL MOBILE
-======================================== */
+/* =====================================================
+   VERY SMALL MOBILE
+===================================================== */
 
 @media(max-width:380px){
 
   .sidebar{
-    width:86vw;
+    width:88vw;
+  }
+
+  .sidebar-header{
+    padding-left:82px;
+  }
+
+  .menu-toggle{
+    left:14px;
   }
 
 }
@@ -549,23 +594,9 @@ body{
 <body>
 
 
-<!-- ========================================
-     NÚT MỞ MENU
-======================================== -->
-
-<button
-  class="menu-toggle"
-  id="menuToggle"
-  onclick="toggleMenu()"
-  aria-label="Mở menu"
->
-  ☰
-</button>
-
-
-<!-- ========================================
+<!-- =====================================================
      OVERLAY
-======================================== -->
+===================================================== -->
 
 <div
   class="overlay"
@@ -574,9 +605,9 @@ body{
 ></div>
 
 
-<!-- ========================================
+<!-- =====================================================
      SIDEBAR
-======================================== -->
+===================================================== -->
 
 <div
   class="sidebar"
@@ -587,10 +618,6 @@ body{
   <!-- HEADER -->
 
   <div class="sidebar-header">
-
-    <div class="logo-icon">
-      📊
-    </div>
 
     <div class="logo-text">
 
@@ -607,143 +634,80 @@ body{
   </div>
 
 
-  <!-- MENU LABEL -->
+  <!-- MENU -->
 
   <div class="menu-label">
     HỆ THỐNG BÁO CÁO
   </div>
 
 
-  <!-- KPI -->
-
   <div
     class="menu-item active"
     data-page="kpi"
     onclick="loadPage('kpi', this)"
   >
-
-    <div class="menu-icon">
-      📈
-    </div>
-
-    <div class="menu-text">
-      KPI
-    </div>
-
+    <div class="menu-icon">📈</div>
+    <div class="menu-text">KPI</div>
   </div>
 
-
-  <!-- TỒN CĐBR -->
 
   <div
     class="menu-item"
     data-page="toncdbr"
     onclick="loadPage('toncdbr', this)"
   >
-
-    <div class="menu-icon">
-      📊
-    </div>
-
-    <div class="menu-text">
-      TỒN CĐBR
-    </div>
-
+    <div class="menu-icon">📊</div>
+    <div class="menu-text">TỒN CĐBR</div>
   </div>
 
-
-  <!-- THU HỒI -->
 
   <div
     class="menu-item"
     data-page="thuhoi"
     onclick="loadPage('thuhoi', this)"
   >
-
-    <div class="menu-icon">
-      📥
-    </div>
-
-    <div class="menu-text">
-      Thu hồi
-    </div>
-
+    <div class="menu-icon">📥</div>
+    <div class="menu-text">Thu hồi</div>
   </div>
 
-
-  <!-- HOME WIFI -->
 
   <div
     class="menu-item"
     data-page="wifi"
     onclick="loadPage('wifi', this)"
   >
-
-    <div class="menu-icon">
-      📶
-    </div>
-
-    <div class="menu-text">
-      Home Wifi
-    </div>
-
+    <div class="menu-icon">📶</div>
+    <div class="menu-text">Home Wifi</div>
   </div>
 
-
-  <!-- TIẾT KIỆM VT -->
 
   <div
     class="menu-item"
     data-page="tietkiem"
     onclick="loadPage('tietkiem', this)"
   >
-
-    <div class="menu-icon">
-      💰
-    </div>
-
-    <div class="menu-text">
-      Tiết kiệm VT
-    </div>
-
+    <div class="menu-icon">💰</div>
+    <div class="menu-text">Tiết kiệm VT</div>
   </div>
 
-
-  <!-- TỒN KHO -->
 
   <div
     class="menu-item"
     data-page="tonkho"
     onclick="loadPage('tonkho', this)"
   >
-
-    <div class="menu-icon">
-      📦
-    </div>
-
-    <div class="menu-text">
-      Tồn kho CĐBR
-    </div>
-
+    <div class="menu-icon">📦</div>
+    <div class="menu-text">Tồn kho CĐBR</div>
   </div>
 
-
-  <!-- ICMS -->
 
   <div
     class="menu-item"
     data-page="icms"
     onclick="loadPage('icms', this)"
   >
-
-    <div class="menu-icon">
-      🗂️
-    </div>
-
-    <div class="menu-text">
-      Tồn ICMS KSNN
-    </div>
-
+    <div class="menu-icon">🗂️</div>
+    <div class="menu-text">Tồn ICMS KSNN</div>
   </div>
 
 
@@ -754,34 +718,18 @@ body{
     data-page="kenhtruyen"
     onclick="loadPage('kenhtruyen', this)"
   >
-
-    <div class="menu-icon">
-      📡
-    </div>
-
-    <div class="menu-text">
-      Kênh truyền
-    </div>
-
+    <div class="menu-icon">📡</div>
+    <div class="menu-text">Kênh truyền</div>
   </div>
 
-
-  <!-- TAMMI -->
 
   <div
     class="menu-item"
     data-page="tammi"
     onclick="loadPage('tammi', this)"
   >
-
-    <div class="menu-icon">
-      ⚙️
-    </div>
-
-    <div class="menu-text">
-      TAMMI
-    </div>
-
+    <div class="menu-icon">⚙️</div>
+    <div class="menu-text">TAMMI</div>
   </div>
 
 
@@ -799,9 +747,25 @@ body{
 </div>
 
 
-<!-- ========================================
-     CONTENT
-======================================== -->
+<!-- =====================================================
+     MENU BUTTON
+===================================================== -->
+
+<button
+  class="menu-toggle"
+  id="menuToggle"
+  onclick="toggleMenu()"
+  aria-label="Mở menu"
+>
+  <span></span>
+  <span></span>
+  <span></span>
+</button>
+
+
+<!-- =====================================================
+     MAIN CONTENT
+===================================================== -->
 
 <div class="container">
 
@@ -820,9 +784,9 @@ body{
 
 <script>
 
-/* ========================================
+/* =====================================================
    DANH SÁCH TRANG
-======================================== */
+===================================================== */
 
 const pages = {
 
@@ -856,28 +820,47 @@ const pages = {
 };
 
 
-/* ========================================
+/* =====================================================
+   KHỞI TẠO
+===================================================== */
+
+const sidebar =
+  document.getElementById("sidebar");
+
+const overlay =
+  document.getElementById("overlay");
+
+const menuToggle =
+  document.getElementById("menuToggle");
+
+const frame =
+  document.getElementById("frame");
+
+
+frame.dataset.currentPage =
+  "kpi";
+
+
+/* =====================================================
    LOAD PAGE
-======================================== */
+===================================================== */
 
 function loadPage(page, element){
 
   const url = pages[page];
 
   if(!url){
+
     console.warn(
       "Không tìm thấy trang:",
       page
     );
+
     return;
   }
 
 
-  const frame =
-    document.getElementById("frame");
-
-
-  /* Chỉ load lại nếu khác trang hiện tại */
+  /* Không reload nếu đang ở đúng trang */
 
   if(
     frame.dataset.currentPage !== page
@@ -891,11 +874,11 @@ function loadPage(page, element){
   }
 
 
-  /* Xóa active menu cũ */
+  /* Xóa trạng thái active */
 
   document
     .querySelectorAll(".menu-item")
-    .forEach(item => {
+    .forEach(function(item){
 
       item.classList.remove(
         "active"
@@ -904,7 +887,7 @@ function loadPage(page, element){
     });
 
 
-  /* Active menu mới */
+  /* Active menu hiện tại */
 
   if(element){
 
@@ -915,33 +898,24 @@ function loadPage(page, element){
   }
 
 
-  /* Đóng menu sau khi chọn */
+  /* Đóng menu */
 
   closeMenu();
 
 }
 
 
-/* ========================================
+/* =====================================================
    TOGGLE MENU
-======================================== */
+===================================================== */
 
 function toggleMenu(){
 
-  const sidebar =
-    document.getElementById("sidebar");
-
-  const overlay =
-    document.getElementById("overlay");
-
-
-  const isOpen =
+  if(
     sidebar.classList.contains(
       "active"
-    );
-
-
-  if(isOpen){
+    )
+  ){
 
     closeMenu();
 
@@ -954,45 +928,51 @@ function toggleMenu(){
 }
 
 
-/* ========================================
+/* =====================================================
    OPEN MENU
-======================================== */
+===================================================== */
 
 function openMenu(){
 
-  document
-    .getElementById("sidebar")
-    .classList.add("active");
+  sidebar.classList.add(
+    "active"
+  );
 
+  overlay.classList.add(
+    "active"
+  );
 
-  document
-    .getElementById("overlay")
-    .classList.add("active");
+  menuToggle.classList.add(
+    "active"
+  );
 
 }
 
 
-/* ========================================
+/* =====================================================
    CLOSE MENU
-======================================== */
+===================================================== */
 
 function closeMenu(){
 
-  document
-    .getElementById("sidebar")
-    .classList.remove("active");
+  sidebar.classList.remove(
+    "active"
+  );
 
+  overlay.classList.remove(
+    "active"
+  );
 
-  document
-    .getElementById("overlay")
-    .classList.remove("active");
+  menuToggle.classList.remove(
+    "active"
+  );
 
 }
 
 
-/* ========================================
+/* =====================================================
    ESC ĐỂ ĐÓNG MENU
-======================================== */
+===================================================== */
 
 document.addEventListener(
   "keydown",
@@ -1006,16 +986,6 @@ document.addEventListener(
 
   }
 );
-
-
-/* ========================================
-   KHỞI TẠO TRANG HIỆN TẠI
-======================================== */
-
-document
-  .getElementById("frame")
-  .dataset.currentPage =
-  "kpi";
 
 </script>
 
