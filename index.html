@@ -2,272 +2,1023 @@
 <html lang="vi">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<title>Dashboard App</title>
+
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1, maximum-scale=1"
+>
+
+<title>Dashboard</title>
 
 <style>
+
+/* ========================================
+   RESET
+======================================== */
+
 *{
   box-sizing:border-box;
 }
 
+html,
 body{
+  width:100%;
+  height:100%;
   margin:0;
-  font-family:Arial, sans-serif;
   overflow:hidden;
-  background:#f4f6f9;
+  font-family:
+    "Segoe UI",
+    Arial,
+    sans-serif;
 }
 
-/* ===== Layout ===== */
+
+/* ========================================
+   BACKGROUND
+======================================== */
+
+body{
+  background:
+    radial-gradient(
+      circle at top left,
+      #263f5a,
+      #0b1320 45%,
+      #060b12 100%
+    );
+}
+
+
+/* ========================================
+   MAIN CONTAINER
+======================================== */
+
 .container{
-  display:flex;
+  width:100vw;
   height:100vh;
-}
-
-/* ===== Sidebar ===== */
-.sidebar{
-  width:240px;
-  background:#2c3e50;
-  color:#fff;
-  padding:12px;
-  overflow-y:auto;
-  transition:0.3s;
-  z-index:1000;
-}
-
-.sidebar h3{
-  margin-top:0;
-  margin-bottom:15px;
-  font-size:20px;
-  text-align:center;
-}
-
-/* ===== Menu ===== */
-.menu-item{
-  padding:14px 12px;
-  margin:6px 0;
-  cursor:pointer;
-  border-radius:10px;
-  transition:0.2s;
-  font-size:15px;
-  user-select:none;
-}
-
-.menu-item:hover{
-  background:#34495e;
-}
-
-.menu-item:active{
-  transform:scale(0.98);
-}
-
-/* ===== Content ===== */
-.content{
-  flex:1;
-  background:#fff;
   position:relative;
 }
 
-iframe{
+
+/* ========================================
+   CONTENT
+======================================== */
+
+.content{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  background:#ffffff;
+}
+
+
+/* ========================================
+   IFRAME
+======================================== */
+
+#frame{
+  display:block;
   width:100%;
   height:100%;
   border:none;
-  background:#fff;
+  background:#ffffff;
 }
 
-/* ===== Mobile Button ===== */
+
+/* ========================================
+   MENU BUTTON
+======================================== */
+
 .menu-toggle{
-  display:none;
   position:fixed;
-  top:10px;
-  left:10px;
-  z-index:2000;
-  background:#2c3e50;
-  color:#fff;
-  border:none;
-  border-radius:8px;
-  padding:10px 12px;
-  font-size:20px;
+
+  top:16px;
+  left:16px;
+
+  width:48px;
+  height:48px;
+
+  z-index:3000;
+
+  border:1px solid rgba(255,255,255,0.15);
+
+  border-radius:14px;
+
+  background:
+    rgba(20,31,46,0.88);
+
+  backdrop-filter:
+    blur(14px);
+
+  -webkit-backdrop-filter:
+    blur(14px);
+
+  color:#ffffff;
+
+  font-size:23px;
+
   cursor:pointer;
+
+  box-shadow:
+    0 8px 25px
+    rgba(0,0,0,0.25);
+
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease,
+    box-shadow 0.2s ease;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
 }
 
-/* ===== Overlay ===== */
+.menu-toggle:hover{
+  background:
+    rgba(35,57,82,0.96);
+
+  transform:
+    scale(1.06);
+
+  box-shadow:
+    0 12px 30px
+    rgba(0,0,0,0.35);
+}
+
+.menu-toggle:active{
+  transform:
+    scale(0.94);
+}
+
+
+/* ========================================
+   OVERLAY
+======================================== */
+
 .overlay{
-  display:none;
   position:fixed;
   inset:0;
-  background:rgba(0,0,0,0.4);
-  z-index:999;
+
+  z-index:1999;
+
+  opacity:0;
+  visibility:hidden;
+
+  background:
+    rgba(0,0,0,0.38);
+
+  backdrop-filter:
+    blur(3px);
+
+  -webkit-backdrop-filter:
+    blur(3px);
+
+  transition:
+    opacity 0.3s ease,
+    visibility 0.3s ease;
 }
 
-/* ===== Mobile ===== */
-@media (max-width:768px){
+.overlay.active{
+  opacity:1;
+  visibility:visible;
+}
 
-  .menu-toggle{
-    display:block;
-  }
+
+/* ========================================
+   SIDEBAR
+======================================== */
+
+.sidebar{
+
+  position:fixed;
+
+  top:0;
+  left:0;
+
+  width:280px;
+  height:100vh;
+
+  z-index:2000;
+
+  padding:18px 14px;
+
+  overflow-y:auto;
+
+  transform:
+    translateX(-105%);
+
+  transition:
+    transform 0.35s
+    cubic-bezier(
+      0.22,
+      1,
+      0.36,
+      1
+    );
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(21,34,50,0.98),
+      rgba(8,16,27,0.99)
+    );
+
+  border-right:
+    1px solid
+    rgba(255,255,255,0.08);
+
+  box-shadow:
+    15px 0 50px
+    rgba(0,0,0,0.35);
+
+  backdrop-filter:
+    blur(20px);
+
+  -webkit-backdrop-filter:
+    blur(20px);
+}
+
+.sidebar.active{
+  transform:
+    translateX(0);
+}
+
+
+/* ========================================
+   SCROLLBAR
+======================================== */
+
+.sidebar::-webkit-scrollbar{
+  width:5px;
+}
+
+.sidebar::-webkit-scrollbar-thumb{
+  background:
+    rgba(255,255,255,0.18);
+
+  border-radius:10px;
+}
+
+
+/* ========================================
+   LOGO
+======================================== */
+
+.sidebar-header{
+
+  display:flex;
+  align-items:center;
+
+  gap:12px;
+
+  padding:
+    8px 8px 20px;
+
+  margin-bottom:8px;
+
+  border-bottom:
+    1px solid
+    rgba(255,255,255,0.08);
+}
+
+.logo-icon{
+
+  width:44px;
+  height:44px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  border-radius:14px;
+
+  font-size:22px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #1677ff,
+      #00b8d9
+    );
+
+  box-shadow:
+    0 6px 20px
+    rgba(22,119,255,0.35);
+}
+
+.logo-text{
+  display:flex;
+  flex-direction:column;
+}
+
+.logo-title{
+
+  color:#ffffff;
+
+  font-size:18px;
+
+  font-weight:700;
+
+  letter-spacing:
+    0.3px;
+}
+
+.logo-subtitle{
+
+  margin-top:2px;
+
+  color:
+    rgba(255,255,255,0.48);
+
+  font-size:11px;
+
+  letter-spacing:
+    1px;
+}
+
+
+/* ========================================
+   MENU LABEL
+======================================== */
+
+.menu-label{
+
+  margin:
+    18px 10px 8px;
+
+  color:
+    rgba(255,255,255,0.38);
+
+  font-size:10px;
+
+  font-weight:700;
+
+  letter-spacing:
+    1.2px;
+}
+
+
+/* ========================================
+   MENU ITEM
+======================================== */
+
+.menu-item{
+
+  display:flex;
+  align-items:center;
+
+  gap:13px;
+
+  width:100%;
+
+  padding:
+    13px 14px;
+
+  margin:
+    5px 0;
+
+  border-radius:12px;
+
+  color:
+    rgba(255,255,255,0.82);
+
+  font-size:14px;
+
+  font-weight:500;
+
+  cursor:pointer;
+
+  user-select:none;
+
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease,
+    color 0.2s ease;
+}
+
+.menu-item:hover{
+
+  background:
+    rgba(255,255,255,0.08);
+
+  color:#ffffff;
+
+  transform:
+    translateX(4px);
+}
+
+.menu-item.active{
+
+  color:#ffffff;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(22,119,255,0.85),
+      rgba(22,119,255,0.25)
+    );
+
+  box-shadow:
+    inset
+    3px 0 0
+    #4aa3ff;
+}
+
+
+/* ========================================
+   MENU ICON
+======================================== */
+
+.menu-icon{
+
+  width:30px;
+  height:30px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  flex-shrink:0;
+
+  border-radius:9px;
+
+  background:
+    rgba(255,255,255,0.06);
+
+  font-size:16px;
+}
+
+
+/* ========================================
+   MENU TEXT
+======================================== */
+
+.menu-text{
+  flex:1;
+}
+
+
+/* ========================================
+   STATUS
+======================================== */
+
+.sidebar-footer{
+
+  margin-top:22px;
+
+  padding:
+    14px 12px;
+
+  border-radius:12px;
+
+  background:
+    rgba(255,255,255,0.04);
+
+  border:
+    1px solid
+    rgba(255,255,255,0.06);
+
+  color:
+    rgba(255,255,255,0.45);
+
+  font-size:11px;
+
+  text-align:center;
+}
+
+.status-dot{
+
+  display:inline-block;
+
+  width:7px;
+  height:7px;
+
+  margin-right:5px;
+
+  border-radius:50%;
+
+  background:#38d39f;
+
+  box-shadow:
+    0 0 10px
+    rgba(56,211,159,0.8);
+}
+
+
+/* ========================================
+   MOBILE
+======================================== */
+
+@media(max-width:768px){
 
   .sidebar{
-    position:fixed;
-    left:-260px;
-    top:0;
-    height:100%;
-    width:240px;
-    box-shadow:2px 0 10px rgba(0,0,0,0.3);
+    width:min(280px, 82vw);
   }
 
-  .sidebar.active{
-    left:0;
+  .menu-toggle{
+    top:10px;
+    left:10px;
+
+    width:44px;
+    height:44px;
+
+    border-radius:12px;
+
+    font-size:21px;
   }
 
-  .overlay.active{
-    display:block;
-  }
-
-  .content{
-    width:100%;
-  }
-
-  iframe{
-    height:100vh;
-  }
-
-  .menu-item{
-    font-size:16px;
-    padding:15px;
-  }
 }
+
+
+/* ========================================
+   SMALL MOBILE
+======================================== */
+
+@media(max-width:380px){
+
+  .sidebar{
+    width:86vw;
+  }
+
+}
+
 </style>
 </head>
 
+
 <body>
 
-<!-- Nút mở menu mobile -->
-<button class="menu-toggle" onclick="toggleMenu()">☰</button>
 
-<!-- Overlay -->
-<div class="overlay" id="overlay" onclick="toggleMenu()"></div>
+<!-- ========================================
+     NÚT MỞ MENU
+======================================== -->
 
-<div class="container">
+<button
+  class="menu-toggle"
+  id="menuToggle"
+  onclick="toggleMenu()"
+  aria-label="Mở menu"
+>
+  ☰
+</button>
 
-  <!-- MENU -->
-  <div class="sidebar" id="sidebar">
 
-    <h3>📊 Dashboard</h3>
+<!-- ========================================
+     OVERLAY
+======================================== -->
 
-    <div class="menu-item" onclick="loadPage('kpi')">
-      📈 KPI
+<div
+  class="overlay"
+  id="overlay"
+  onclick="closeMenu()"
+></div>
+
+
+<!-- ========================================
+     SIDEBAR
+======================================== -->
+
+<div
+  class="sidebar"
+  id="sidebar"
+>
+
+
+  <!-- HEADER -->
+
+  <div class="sidebar-header">
+
+    <div class="logo-icon">
+      📊
     </div>
-    
-    <div class="menu-item" onclick="loadPage('toncdbr')">
-      📊 TỒN CĐBR
-    </div>
 
-    <div class="menu-item" onclick="loadPage('thuhoi')">
-      📥 Thu hồi
-    </div>
+    <div class="logo-text">
 
-    <div class="menu-item" onclick="loadPage('wifi')">
-      📶 Home Wifi
-    </div>
+      <div class="logo-title">
+        Dashboard
+      </div>
 
-    <div class="menu-item" onclick="loadPage('tietkiem')">
-      💰 Tiết kiệm VT
-    </div>
+      <div class="logo-subtitle">
+        CONTROL CENTER
+      </div>
 
-    <div class="menu-item" onclick="loadPage('tonkho')">
-      📦 Tồn kho CĐBR
-    </div>
-
-    <div class="menu-item" onclick="loadPage('icms')">
-      📦 Tồn ICMS KSNN
-    </div>
-
-    <div class="menu-item" onclick="loadPage('thuhoi')">
-      💰 THU HỒI
-    </div>
-
-    <div class="menu-item" onclick="loadPage('tammi')">
-      💰 TAMMI
     </div>
 
   </div>
 
-  <!-- NỘI DUNG -->
+
+  <!-- MENU LABEL -->
+
+  <div class="menu-label">
+    HỆ THỐNG BÁO CÁO
+  </div>
+
+
+  <!-- KPI -->
+
+  <div
+    class="menu-item active"
+    data-page="kpi"
+    onclick="loadPage('kpi', this)"
+  >
+
+    <div class="menu-icon">
+      📈
+    </div>
+
+    <div class="menu-text">
+      KPI
+    </div>
+
+  </div>
+
+
+  <!-- TỒN CĐBR -->
+
+  <div
+    class="menu-item"
+    data-page="toncdbr"
+    onclick="loadPage('toncdbr', this)"
+  >
+
+    <div class="menu-icon">
+      📊
+    </div>
+
+    <div class="menu-text">
+      TỒN CĐBR
+    </div>
+
+  </div>
+
+
+  <!-- THU HỒI -->
+
+  <div
+    class="menu-item"
+    data-page="thuhoi"
+    onclick="loadPage('thuhoi', this)"
+  >
+
+    <div class="menu-icon">
+      📥
+    </div>
+
+    <div class="menu-text">
+      Thu hồi
+    </div>
+
+  </div>
+
+
+  <!-- HOME WIFI -->
+
+  <div
+    class="menu-item"
+    data-page="wifi"
+    onclick="loadPage('wifi', this)"
+  >
+
+    <div class="menu-icon">
+      📶
+    </div>
+
+    <div class="menu-text">
+      Home Wifi
+    </div>
+
+  </div>
+
+
+  <!-- TIẾT KIỆM VT -->
+
+  <div
+    class="menu-item"
+    data-page="tietkiem"
+    onclick="loadPage('tietkiem', this)"
+  >
+
+    <div class="menu-icon">
+      💰
+    </div>
+
+    <div class="menu-text">
+      Tiết kiệm VT
+    </div>
+
+  </div>
+
+
+  <!-- TỒN KHO -->
+
+  <div
+    class="menu-item"
+    data-page="tonkho"
+    onclick="loadPage('tonkho', this)"
+  >
+
+    <div class="menu-icon">
+      📦
+    </div>
+
+    <div class="menu-text">
+      Tồn kho CĐBR
+    </div>
+
+  </div>
+
+
+  <!-- ICMS -->
+
+  <div
+    class="menu-item"
+    data-page="icms"
+    onclick="loadPage('icms', this)"
+  >
+
+    <div class="menu-icon">
+      🗂️
+    </div>
+
+    <div class="menu-text">
+      Tồn ICMS KSNN
+    </div>
+
+  </div>
+
+
+  <!-- KÊNH TRUYỀN -->
+
+  <div
+    class="menu-item"
+    data-page="kenhtruyen"
+    onclick="loadPage('kenhtruyen', this)"
+  >
+
+    <div class="menu-icon">
+      📡
+    </div>
+
+    <div class="menu-text">
+      Kênh truyền
+    </div>
+
+  </div>
+
+
+  <!-- TAMMI -->
+
+  <div
+    class="menu-item"
+    data-page="tammi"
+    onclick="loadPage('tammi', this)"
+  >
+
+    <div class="menu-icon">
+      ⚙️
+    </div>
+
+    <div class="menu-text">
+      TAMMI
+    </div>
+
+  </div>
+
+
+  <!-- FOOTER -->
+
+  <div class="sidebar-footer">
+
+    <span class="status-dot"></span>
+
+    HỆ THỐNG ĐANG HOẠT ĐỘNG
+
+  </div>
+
+
+</div>
+
+
+<!-- ========================================
+     CONTENT
+======================================== -->
+
+<div class="container">
+
   <div class="content">
 
     <iframe
       id="frame"
-      src="https://cvthuong921331040253-hub.github.io/dashboard-icms/">
-    </iframe>
+      src="https://cvthuong921331040253-hub.github.io/dashboard-icms/"
+      title="Dashboard"
+    ></iframe>
 
   </div>
 
 </div>
 
+
 <script>
 
-function loadPage(page){
+/* ========================================
+   DANH SÁCH TRANG
+======================================== */
 
-  let url = "";
+const pages = {
 
-  if(page === "kpi"){
-    url = "https://cvthuong921331040253-hub.github.io/dashboard-icms/";
-  }
+  kpi:
+  "https://cvthuong921331040253-hub.github.io/dashboard-icms/",
 
-  if(page === "thuhoi"){
-    url = "https://cvthuong921331040253-hub.github.io/dashboard-icms/thuhoi.html";
-  }
+  toncdbr:
+  "https://cvthuong921331040253-hub.github.io/dashboard-icms/toncdbr.html",
 
-  if(page === "wifi"){
-    url = "https://cvthuong921331040253-hub.github.io/dashboard-icms/homewifi.html";
-  }
+  thuhoi:
+  "https://cvthuong921331040253-hub.github.io/dashboard-icms/thuhoi.html",
 
-  if(page === "tietkiem"){
-    url = "https://cvthuong921331040253-hub.github.io/dashboard-icms/tietkiemvt.html";
-  }
+  wifi:
+  "https://cvthuong921331040253-hub.github.io/dashboard-icms/homewifi.html",
 
-  if(page === "tonkho"){
-    url = "https://cvthuong921331040253-hub.github.io/dashboard-icms/tonkho.html";
-  }
+  tietkiem:
+  "https://cvthuong921331040253-hub.github.io/dashboard-icms/tietkiemvt.html",
 
-  if(page === "icms"){
-    url = "https://cvthuong921331040253-hub.github.io/dashboard-icms/icms.html";
-  }
+  tonkho:
+  "https://cvthuong921331040253-hub.github.io/dashboard-icms/tonkho.html",
 
-  if(page === "toncdbr"){
-    url = "https://cvthuong921331040253-hub.github.io/dashboard-icms/toncdbr.html";
-  }
+  icms:
+  "https://cvthuong921331040253-hub.github.io/dashboard-icms/icms.html",
 
-  if(page === "tammi"){
-    url = "https://cvthuong921331040253-hub.github.io/dashboard-icms/tammi.html";
-  }
+  kenhtruyen:
+  "https://cvthuong921331040253-hub.github.io/dashboard-icms/kenhtruyen.html",
 
-  document.getElementById("frame").src = url;
+  tammi:
+  "https://cvthuong921331040253-hub.github.io/dashboard-icms/tammi.html"
 
-  // Mobile tự đóng menu sau khi chọn
-  if(window.innerWidth <= 768){
-    toggleMenu(false);
-  }
-}
+};
 
-/* ===== Toggle menu ===== */
 
-function toggleMenu(forceClose = null){
+/* ========================================
+   LOAD PAGE
+======================================== */
 
-  const sidebar = document.getElementById("sidebar");
-  const overlay = document.getElementById("overlay");
+function loadPage(page, element){
 
-  if(forceClose === false){
-    sidebar.classList.remove("active");
-    overlay.classList.remove("active");
+  const url = pages[page];
+
+  if(!url){
+    console.warn(
+      "Không tìm thấy trang:",
+      page
+    );
     return;
   }
 
-  sidebar.classList.toggle("active");
-  overlay.classList.toggle("active");
+
+  const frame =
+    document.getElementById("frame");
+
+
+  /* Chỉ load lại nếu khác trang hiện tại */
+
+  if(
+    frame.dataset.currentPage !== page
+  ){
+
+    frame.src = url;
+
+    frame.dataset.currentPage =
+      page;
+
+  }
+
+
+  /* Xóa active menu cũ */
+
+  document
+    .querySelectorAll(".menu-item")
+    .forEach(item => {
+
+      item.classList.remove(
+        "active"
+      );
+
+    });
+
+
+  /* Active menu mới */
+
+  if(element){
+
+    element.classList.add(
+      "active"
+    );
+
+  }
+
+
+  /* Đóng menu sau khi chọn */
+
+  closeMenu();
+
 }
 
+
+/* ========================================
+   TOGGLE MENU
+======================================== */
+
+function toggleMenu(){
+
+  const sidebar =
+    document.getElementById("sidebar");
+
+  const overlay =
+    document.getElementById("overlay");
+
+
+  const isOpen =
+    sidebar.classList.contains(
+      "active"
+    );
+
+
+  if(isOpen){
+
+    closeMenu();
+
+  }else{
+
+    openMenu();
+
+  }
+
+}
+
+
+/* ========================================
+   OPEN MENU
+======================================== */
+
+function openMenu(){
+
+  document
+    .getElementById("sidebar")
+    .classList.add("active");
+
+
+  document
+    .getElementById("overlay")
+    .classList.add("active");
+
+}
+
+
+/* ========================================
+   CLOSE MENU
+======================================== */
+
+function closeMenu(){
+
+  document
+    .getElementById("sidebar")
+    .classList.remove("active");
+
+
+  document
+    .getElementById("overlay")
+    .classList.remove("active");
+
+}
+
+
+/* ========================================
+   ESC ĐỂ ĐÓNG MENU
+======================================== */
+
+document.addEventListener(
+  "keydown",
+  function(event){
+
+    if(event.key === "Escape"){
+
+      closeMenu();
+
+    }
+
+  }
+);
+
+
+/* ========================================
+   KHỞI TẠO TRANG HIỆN TẠI
+======================================== */
+
+document
+  .getElementById("frame")
+  .dataset.currentPage =
+  "kpi";
+
 </script>
+
 
 </body>
 </html>
