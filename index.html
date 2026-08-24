@@ -157,6 +157,10 @@ iframe{
     <div class="menu-item" onclick="loadPage('kpi')">
       📈 KPI
     </div>
+    
+    <div class="menu-item" onclick="loadPage('toncdbr')">
+      📊 TỒN CĐBR
+    </div>
 
     <div class="menu-item" onclick="loadPage('thuhoi')">
       📥 Thu hồi
@@ -167,7 +171,7 @@ iframe{
     </div>
 
     <div class="menu-item" onclick="loadPage('tietkiem')">
-      💰 Tiết kiệm
+      💰 Tiết kiệm VT
     </div>
 
     <div class="menu-item" onclick="loadPage('tonkho')">
@@ -178,10 +182,13 @@ iframe{
       📦 Tồn ICMS KSNN
     </div>
 
-      <div class="menu-item" onclick="loadPage('toncdbr')">
-      📈 TỒN CĐBR
+    <div class="menu-item" onclick="loadPage('thuhoi')">
+      💰 THU HỒI
     </div>
-    
+
+    <div class="menu-item" onclick="loadPage('tammi')">
+      💰 TAMMI
+    </div>
 
   </div>
 
@@ -229,6 +236,10 @@ function loadPage(page){
 
   if(page === "toncdbr"){
     url = "https://cvthuong921331040253-hub.github.io/dashboard-icms/toncdbr.html";
+  }
+
+  if(page === "tammi"){
+    url = "https://cvthuong921331040253-hub.github.io/dashboard-icms/tammi.html";
   }
 
   document.getElementById("frame").src = url;
